@@ -2518,7 +2518,10 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             }
             break
             case 'list': case 'menu': case 'help': case '?': {
-                anu = `┌──⭓ *Group Menu*
+                var thumb = 'https://reysekhaa.herokuapp.com/api/wallpaper/ukhty?apikey=apirey'
+                reygans = await getBuffer(thumb)
+                anu = `
+┌──⭓ *Group Menu*
 │
 │⭔ ${prefix}linkgroup
 │⭔ ${prefix}ephemeral [option]
@@ -2823,7 +2826,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                             }, {
                                 callButton: {
                                     displayText: 'Number Phone Owner',
-                                    phoneNumber: '+62 882-9202-4190'
+                                    phoneNumber: '0'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -2841,9 +2844,16 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                                     id: 'sc'
                                 }
                             }]
-                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn)
-                     }
-            break
+                        await hisoka.sendMessage(from, {
+				caption: `${anu} `,
+				location: {
+					jpegThumbnail: thumb,
+				},
+				templateButtons: btn,
+				footer: '© sekha'
+			}, )
+		}
+		break
             default:
                 if (budy.startsWith('=>')) {
                     if (!isCreator) return m.reply(mess.owner)
